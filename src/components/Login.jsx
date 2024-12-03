@@ -1,8 +1,16 @@
-import {useState } from 'react'
+import {useState, useContext } from 'react'
+import UserContext from '../context/UserContext'
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const {setUser} = useContext(UserContext)
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setUser({username, password});
+;    }
 
   return (
     <div>
@@ -22,7 +30,10 @@ const Login = () => {
             placeholder="Password"
             />
             {" "}
-            <button style={{backgroundColor: '#d5d5d5'}}>
+            <button 
+            style={{backgroundColor: '#d5d5d5'}}
+            onClick={handleSubmit}
+            >
                 Submit
             </button>
     </div>
